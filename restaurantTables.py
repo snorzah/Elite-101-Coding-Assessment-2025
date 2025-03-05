@@ -43,3 +43,38 @@ restaurant_tables2 = [
     [5,        'o',      'x',      'o',      'x',      'o',      'o'],
     [6,        'o',      'o',      'o',      'o',      'x',      'o']
 ]
+
+# Level 1
+def allFreeTables(tables):
+    freeTables = []
+    for r, row in enumerate(tables):
+        for c, table in enumerate(row):
+            if table == "o":
+                freeTables.append((r, c))
+    return freeTables
+# Returns a list of tuples of each position of a free table
+
+# Level 2
+def firstFreeTableByPartySize(tables, partySize):
+    for c in range(1, len(tables[0])):
+        if int(tables[0][c][3]) >= partySize:
+            for r in range(len(tables)):
+                if tables[r][c] == "o":
+                    return (r,c)
+# Returns the first found valid table of sufficient size
+
+# Level 3
+def freeTablesByPartySize(tables, partySize):
+    freeTables = []
+    for c in range(1, len(tables[0])):
+        if int(tables[0][c][3]) >= partySize:
+            for r in range(len(tables)):
+                if tables[r][c] == "o":
+                    freeTables.append((r,c))
+    return freeTables
+# Returns all found valid tables of sufficient size
+
+if __name__ == "__main__":
+    print("Level 1: Position of All Free Tables: ", allFreeTables(restaurant_tables2))
+    print("Level 2: Position of First Free Table By Size: ", firstFreeTableByPartySize(restaurant_tables2, 3))
+    print("Level 3: Position of All Free Tables By Size: ", freeTablesByPartySize(restaurant_tables2, 3))
